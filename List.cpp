@@ -164,3 +164,20 @@ ListNode* Merge(ListNode* pHead1,ListNode* pHead2)
   }
   return pMergeHead;
 }
+
+
+
+/*
+ *
+ * 双向链表基本操作：创建双向链表，删除/插入节点
+ */
+
+/**
+ * Definition for double-linked list.
+ * struct DListNode {
+ *     int val;
+ *     DListNode *pre;
+ *     DListNode *next;
+ *     DListNode(int x) : val(x),next(NULL),pre(NULL) {}
+ * };
+ */
