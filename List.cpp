@@ -102,3 +102,65 @@ unsigned int GetListLength(ListNode* head)
   }
   return cnt;
 }
+
+/*
+ *合并两个已排序的链表
+ * 
+ */
+ListNode* Merge(ListNode* pHead1,ListNode* pHead2)
+{
+  if(pHead1 == NULL)
+    return pHead2;
+  else if(pHead2 == NULL)
+    return pHead1;
+
+  ListNode* pMergeHead = NULL;
+  ListNode* dummy = new ListNode(0);
+  ListNode* cur = dummy->next;
+
+  while(pHead1 && pHead2)
+  {
+    if(pHead1->val < pHead2->val)
+    {
+      cur->next = pHead1;
+      pHead1 = pHead1->next;
+    }
+    else
+    {
+      cur->next = pHead2;
+      pHead2 = pHead2->next;
+    }
+
+    if(pHead1)
+      cur->next = pHead1;
+    else
+      cur->next = pHead2;
+    cur = cur->next;
+  }
+
+  pMergeHead = dummy->next;
+  delete dummy;
+  return pMergeHead;
+}
+
+//递归解法
+ListNode* Merge(ListNode* pHead1,ListNode* pHead2)
+{
+  if(pHead1 == NULL)
+    return pHead2;
+  else if(pHead2 == NULL)
+    return pHead1;
+
+  ListNode* pMergeHead = NULL;
+  if(pHead1->val < pHead2->val)
+  {
+    pMergeHead = pHead1;
+    pMergeHead->next = Merge(pHead1->next,pHead2);
+  }
+  else
+  {
+    pMergeHead = pHead2;
+    pMergeHead->next = Merge(pHead1,pHead2->next);
+  }
+  return pMergeHead;
+}
