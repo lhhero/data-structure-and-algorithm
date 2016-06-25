@@ -61,3 +61,44 @@ ListNode* FindKthToTail(ListNode* head,unsigned int k)
   return slow;
 }
        
+/*
+ *两个链表的第一个公共节点
+ *
+ */
+ListNode* FindFirstCommonNode(ListNode* pHead1,ListNode* pHead2)
+{
+  unsigned int len1 = GetListLength(pHead1);
+  unsigned int len2 = GetListLength(pHead2);
+  ListNode* pLenLong = pHead1;
+  ListNode* pLenShort = pHead2;
+  int dif = len1-len2;
+  if(len1 < len2)
+  {
+    dif = len2-len1;
+    pLenShort = pHead1;
+    pLenLong = pHead2;
+  }
+  //长链表先走dif步,然后两个链表同时遍历
+  for(int i = 0; i < dif; ++i)
+    pLenLong = pLenLong->next;
+
+  while((pLenLong != pLenShort) && (pLenLong != NULL) && (pLenShort != NULL)) 
+  {
+    pLenShort = pLenShort->next;
+    pLenLong = pLenLong->next;
+  }
+
+  ListNode* pFirstCommonNode = pLenLong;
+  return pFirstCommonNode;
+}
+unsigned int GetListLength(ListNode* head)
+{
+  unsigned int cnt = 0;
+  ListNode* p = head;
+  while(p != NULL)
+  {
+    cnt++;
+    p = p->next;
+  }
+  return cnt;
+}
