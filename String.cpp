@@ -133,3 +133,87 @@ ostream & operator<<(ostream &os,const String &str)
 }
 
 
+/**
+ * 最长回文子串，动态规划
+ * 有母串s，我们用c[i, j] = 1表示子串s[i..j]为回文子串，那么就有递推式
+c[i,j] = c[i+1,j−1]   if s[i]=s[j]
+
+c[i,j] = 0           if s[i]≠s[j]
+递推式表示在s[i] = s[j]情况下，如果s[i+1..j-1]是回文子串，则s[i..j]也是回文子串；如果s[i+1..j-1]不是回文子串，则s[i..j]也不是回文子串。
+初始状态：
+c[i][i] = 1
+c[i][i+1] = 1 if s[i] == s[i+1]
+上述式子表示单个字符、两个相同字符均是回文串。
+ */
+#define MAX_LEN 1024
+
+int longPald(char* str)      //时间复杂度O(n^2)
+{
+	if(str == NULL)
+		return 0;
+	int len = strlen(str);
+	if(len == 1)
+		return 1;
+
+	int c[MAX_LEN][MAX_LEN];
+	int longest = 0;
+
+	//初始状态
+	for(int i = 0; i < len; ++i)
+	{
+		c[i][i] = 1;
+		if(str[i] == str[i+1])
+			c[i][i+1] = 1;
+	}
+
+	for(int i = 0; i < len; ++i)
+	{
+		for(int j = i+2; j < len; ++j)
+		{
+			if(str[i] == str[j])
+			{
+				c[i][j] = 1;
+				if(c[i][j])
+				{
+					n = j-i+1;
+					if(n > longest)
+						longest = n;
+				}
+			}
+			else
+				c[i][j] = 0;	
+		}
+	}
+	return longest;
+}
+
+
+/**
+ * 最长公共子序列（LCS）
+ * 序列X=<X0,X1,...Xm>和Y=<Y0,Y1,...Yn>
+ * c[i,j] = 0     if i=0 or j=0
+ * c[i,j] = c[i-1,j-1]+1 if i,j>0 and Xi=Yi
+ * c[i,j] = max{c[i,j-1],c[i-1,j]} if i,j>0 and Xi != Yi
+ */
+int LCS(const char* X,const char* Y)
+{
+	int m = strlen(X);
+	int n = strlen(Y);
+	if(X == NULL || Y = NULL)
+		return 0;
+	for(int i = 1; i < m; ++i)
+		c[i][0] = 0;
+	for(int j = 1; j < n; ++j)
+		c[0][j] = 0;
+	for(int i = 1; i <=m; ++i)
+	{
+		for(int j = 1; j <= n; ++j)
+		{
+			if(X[i] == Y[j])
+				c[i][j] = c[i-1][j-1]+1;
+			else
+				c[i][j] = max(c[i-1][j],c[i][j-1]);
+		}
+		return c[m][n];
+	}
+}
