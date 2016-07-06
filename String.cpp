@@ -5,6 +5,17 @@ char* strcpy(char* dst,const char* src)
 	while((*dst++ = *src++) != '\0');
 	return addr;
 }
+
+char* strcat(char*strDest,const char* strSrc)
+{
+	char* address = strDest;
+	assert(strDest != NULL && strSrc != NULL);
+	while(*strDest)
+		strDest++;
+	while(*strDest++ = *strSrc++)
+	return address;
+}
+
 int strcmp(const char* str1,const char str2)
 {
 	assert(str1 != NULL && str2 != NULL);
@@ -20,6 +31,7 @@ int strcmp(const char* str1,const char str2)
 		ret = 1;
 	return ret;
 }
+
 unsigned int strlen(const char* str)
 {
 	assert(str != NULL);
