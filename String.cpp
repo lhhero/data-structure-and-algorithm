@@ -5,7 +5,21 @@ char* strcpy(char* dst,const char* src)
 	while((*dst++ = *src++) != '\0');
 	return addr;
 }
-
+int strcmp(const char* str1,const char str2)
+{
+	assert(str1 != NULL && str2 != NULL);
+	int ret = 0;
+	while(ret = *(unsigned char*)str1-*(unsigned char*)str2 && *str1)
+	{
+		str1++;
+		str2++;
+	}
+	if(ret < 0)
+		ret = -1;
+	else if(ret > 0)
+		ret = 1;
+	return ret;
+}
 unsigned int strlen(const char* str)
 {
 	assert(str != NULL);
@@ -17,7 +31,12 @@ unsigned int strlen(const char* str)
 	}
 	return len;
 }
-
+//递归解法
+unsigned int strlen(const char* str)
+{
+	assert(str != NULL);
+	return *str == '\0' : 0 ? (1+strlen(++str));
+}
 //若dst与src地址重叠，行为未定义
 void* mymemcpy(void* dst, void* src, size_t count)
 {
