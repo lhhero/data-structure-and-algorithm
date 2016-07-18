@@ -17,18 +17,17 @@ ListNode* reverseList(ListNode* head)
   if(head == NULL || head->next == NULL)
     return head;
 
-  ListNode* p = head;
-  ListNode* q = p->next;
-  head->next = NULL;
+  ListNode* pre = NULL;
+  ListNode* cur = head;
 
-  while(q != NULL)
+  while(cur != NULL)
   {
-    ListNode* r = q->next;
-    q->next = p;
-    p = q;
-    q = r;
+    ListNode* next = cur->next;
+    cur->next = pre;
+    pre = cur;
+    cur = next;
   }
-  return p;
+  return pre;
 }
 
 /*
