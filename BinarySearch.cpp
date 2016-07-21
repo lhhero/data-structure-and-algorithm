@@ -105,8 +105,13 @@ double sqrt(double num)
  * @param  exponent 指数，没有考虑指数为负数的情况
  * 
  */
-double pow(double base,unsigned int exponent)
+double pow(double base,int exponent)
 {
+	if(exponent < 0)
+	{
+		base = 1.0/base;
+		exponent = -exponent;
+	}
 	double result = 0.0
 	if(exponent == 0)
 		result = 1.0;
@@ -118,4 +123,26 @@ double pow(double base,unsigned int exponent)
 		result *= base;
 	return result;
 }
-
+double Power(double base, int exponent) 
+{
+    	if(exponent < 0)
+    	{
+            base = 1.0/base;
+            exponent = -exponent;
+        }
+        
+        if(exponent == 0)
+            return 1;
+        if(exponent == 1)
+            return base;
+        
+        double res = base;
+        while(exponent > 1)
+        {
+            res *= res;
+            exponent /= 2;
+        }
+        if(exponent & 0x1 == 1)
+            res *= base;
+        return res;
+    }
