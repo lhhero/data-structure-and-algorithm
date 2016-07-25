@@ -166,3 +166,22 @@ bool hasPathSum(TreeNode* root, int sum)
         return true; 
     return hasPathSum(root->left, sum-(root->val))||hasPathSum(root->right,sum-(root->val));        
 }
+/**
+ * 翻转二叉树（二叉树的镜像）
+ * 
+ * /
+void Mirror(TreeNode *pRoot) 
+{
+        if(pRoot == NULL)
+            return;
+        if(pRoot->left == NULL && pRoot->right == NULL)
+            return;
+        TreeNode* tmp = pRoot->left;
+        pRoot->left = pRoot->right;
+        pRoot->right = tmp;
+        
+        if(pRoot->left != NULL)
+            Mirror(pRoot->left);
+        if(pRoot->right != NULL)
+            Mirror(pRoot->right);
+}
