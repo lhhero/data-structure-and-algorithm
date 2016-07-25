@@ -115,7 +115,7 @@ ListNode* Merge(ListNode* pHead1,ListNode* pHead2)
 
   ListNode* pMergeHead = NULL;
   ListNode* dummy = new ListNode(0);
-  ListNode* cur = dummy->next;
+  ListNode* cur = dummy;
 
   while(pHead1 && pHead2)
   {
@@ -129,18 +129,17 @@ ListNode* Merge(ListNode* pHead1,ListNode* pHead2)
       cur->next = pHead2;
       pHead2 = pHead2->next;
     }
-
-    if(pHead1)
-      cur->next = pHead1;
-    else
-      cur->next = pHead2;
     cur = cur->next;
   }
-
+  if(pHead1)
+     cur->next = pHead1;
+  if(phead2)
+     cur->next = pHead2;
   pMergeHead = dummy->next;
   delete dummy;
-  return pMergeHead;
+  return pMergeHead；
 }
+
 
 //递归解法
 ListNode* Merge(ListNode* pHead1,ListNode* pHead2)
