@@ -61,13 +61,12 @@ void insertSort(int* array,int len)
 	}
 }
 /**希尔排序
- * 
+ *不稳定
 */
 void shell_sort(int array[] , int length)  
 {  
     int i , j , temp;  
-    int d = length/2;       // 设置希尔排序的初始增量  
-      
+    int d = length/2;       // 设置希尔排序的初始增量 
     while(d >= 1)  
     {  
         for(i = d ; i < length ; ++i)  
@@ -105,7 +104,8 @@ int partition(int *arr , int low , int high)
 /**快速排序 递归
  * 时间复杂度：最坏（O(n^2)[基本有序]）,平均（O(nlogn)）,最好（O(nlogn))
  * 不稳定
- * /
+ */
+ 
 void qsort(int *arr , int low , int high)
 {
   if(low < high)
@@ -137,7 +137,7 @@ void Merge(int array[] , int low , int mid , int high)
 	free(temp);
 }
 /**归并排序
-*时间复杂度：最坏（O(nlogn),平均（O(nlogn)）,最好（O(nlogn))
+*时间复杂度：最坏（O(nlogn)）,平均（O(nlogn)）,最好（O(nlogn))
 *稳定
 */
 void Msort(int array[] , int low , int high)
@@ -151,10 +151,11 @@ void Msort(int array[] , int low , int high)
 		Merge(array , low , mid , high);
 	}
 }
+
 /**堆排序
- * 时间复杂度：最坏（O(nlogn),平均（O(nlogn)）,最好（O(nlogn))，对初始序列的排序顺序不敏感
+ * 时间复杂度：最坏（O(nlogn)）,平均（O(nlogn)）,最好（O(nlogn))，对初始序列的排序顺序不敏感
  * 不稳定
- * /
+ */
 void HeapAdjust(int array[] , int s , int m)   // 对堆进行调整，使下标从s到m的无序序列成为一个大顶堆  
 {
 	int j , temp = array[s];
