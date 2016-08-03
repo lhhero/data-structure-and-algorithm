@@ -174,11 +174,11 @@ void HeapAdjust(int array[] , int s , int m)   // 对堆进行调整，使下标
 void HeapSort(int array[] , int len)
 {
 	int i;
-	for(i = len / 2; i >= 0 ; --i)    // 建立大顶堆
+	for(i = len / 2; i > 0 ; --i)    // 建立大顶堆
 		HeapAdjust(array , i , len-1);
 	for(i = len - 1 ; i > 0 ; --i)
 	{
-		swap(array[0] , array[i] );       // 第个元素和最后一个元素进行交换  
-		HeapAdjust(array , 0 , i-1);      // 建立大顶堆  
+		swap(array[1] , array[i] );       // 第个元素和最后一个元素进行交换  
+		HeapAdjust(array , 1 , i-1);      // 建立大顶堆  
 	}
 }
