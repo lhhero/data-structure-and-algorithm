@@ -248,3 +248,4 @@ int LCS(const char* X,const char* Y)
 		return c[m][n];
 	}
 }
+/*字符串匹配*/
