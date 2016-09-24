@@ -248,4 +248,29 @@ int LCS(const char* X,const char* Y)
 		return c[m][n];
 	}
 }
-/*字符串匹配*/
+/*朴素字符串匹配算法*/
+int BFMatch(string& target, string& pattern)
+{
+	int i = 0, j = 0;
+	int pos = -1;
+	while (i < target.size() && j < pattern.size())
+	{
+		if (target[i] == pattern[j])
+		{
+			i++; 
+			j++;
+		}
+		else
+		{
+			i = i - j + 1;
+			j = 0;
+		}
+	}
+	if (j >= pattern.size())
+		pos = i - pattern.size();
+	return pos;
+}
+
+/*KMP算法*/
+
+
