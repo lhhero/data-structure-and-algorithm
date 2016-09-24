@@ -175,7 +175,7 @@ void HeapSort(int array[] , int len)
 {
 	int i;
 	for(i = len / 2; i > 0 ; --i)    // 建立大顶堆
-		HeapAdjust(array , i , len-1);
+		HeapAdjust(array , i , len);
 	for(i = len - 1 ; i > 0 ; --i)
 	{
 		swap(array[1] , array[i] );       // 第个元素和最后一个元素进行交换  
